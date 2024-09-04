@@ -1,5 +1,5 @@
 # Conformation-Importance-ML-Models
-Welcome to the official repository for the papaer "Understanding Conformation Importance in Data-driven Property Prediction Models"!
+Welcome to the official repository for the paper "Understanding Conformation Importance in Data-driven Property Prediction Models"!
 This repository provide the data/code/model that used for the analysis.
 
 ## PQC Dataset
