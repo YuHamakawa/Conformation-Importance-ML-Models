@@ -21,10 +21,8 @@ conda env create -f environment.yml
 
 ## Tutorial
 I provide code to reproduce the analysis in the paper as a notebook. The notebook consists of three files: one for creating data, one for building a model, and one for visualizing the results.
-Check "tutorial_notebook" directory for more detalis.
+Check [tutorial_notebook](https://github.com/YuHamakawa/Conformation-Importance-ML-Models/tree/main/tutorial_notebook) directory for more detalis.
 
-## Result
-The "output" directory provides the model results that are presented in the tables of the paper.
 
 ## Citation
 Please kindly cite our paper if you use the data/code/model.
