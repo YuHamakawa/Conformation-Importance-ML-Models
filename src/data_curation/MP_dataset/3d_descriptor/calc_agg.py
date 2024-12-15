@@ -213,29 +213,16 @@ def agg_random_descs(df_data: pd.DataFrame,
     return desc_random
 
 
-def calcualte_aggregated_descriptors(data_path: str, save_dir: str) -> None:
-    """
-    Calculate and save aggregated descriptors.
-
-    Args:
-        data_path (str): The path to the data file.
-        save_dir (str): The directory to save the aggregated descriptors.
-    """
-    idx = 'comp_id'
+def calc_agg_3d_descs(data_path: str, save_dir: str) -> None:
+    idx = 'csid'
     p_value = 'p_value'
 
     df_data = pd.read_csv(data_path)
-
+    df_data.drop(columns=['smiles', 'csid_conf'], inplace=True)
     print('Calc. BoltzProb from existing energy data.')
     df_data[p_value] = energy_to_boltzmann_prob(df_data[['MMFF_Energy', idx]],
                                                 T=298,
                                                 unit='kcal/mol')
-
-    # select descriptors want to aggregate
-    df_data.drop(columns=['comp_conf_id', 'conf_id'], inplace=True)
-
-    # p_value_describe = df_data.loc[:,['cid', 'p_value']].groupby('cid').describe()
-    # p_value_describe.to_csv(os.path.join(save_dir, 'p_value_describe.tsv'), sep='\t')
 
     print('Calc. aggregated descs.')
     # Bolzmann weight
@@ -247,43 +234,28 @@ def calcualte_aggregated_descriptors(data_path: str, save_dir: str) -> None:
     # randomly select one conformer
     desc_random = agg_random_descs(df_data, idx, p_value)
 
-    print(
-        'Confirming that all shapes are the same:',
-        desc_weight_mean.shape,
-        desc_eq_mean.shape,
-        desc_max.shape,
-        desc_random.shape,
-    )
+    print('Confirming that all shapes are the same:', desc_weight_mean.shape,
+          desc_eq_mean.shape, desc_max.shape, desc_random.shape)
+
+    # Replace specific columns in desc_weight_mean with those from desc_max for matching 'cid'
+    columns_to_replace = ['mpC']
+    for col in columns_to_replace:
+        desc_weight_mean[col] = desc_weight_mean.index.map(desc_max[col])
 
     print('Saving aggregated descriptors to CSV')
-    df_data.to_csv(os.path.join(save_dir, 'descs_no_agg.csv'), index=False)
-    desc_weight_mean.to_csv(os.path.join(save_dir, 'HFweight.tsv'), sep='\t')
-    desc_eq_mean.to_csv(os.path.join(save_dir, 'eq_weight.tsv'), sep='\t')
-    desc_max.to_csv(os.path.join(save_dir, '1conf.tsv'), sep='\t')
+    desc_weight_mean.to_csv(os.path.join(save_dir, 'boltzmann_weight.tsv'),
+                            sep='\t')
+    desc_eq_mean.to_csv(os.path.join(save_dir, 'mean.tsv'), sep='\t')
+    desc_max.to_csv(os.path.join(save_dir, 'global_minimum.tsv'), sep='\t')
     desc_random.to_csv(os.path.join(save_dir, 'random.tsv'), sep='\t')
-
-    # save random more
-    seed_list = [12, 22, 32, 52]
-    for seed in seed_list:
-        # randomly select one conformer
-        desc_random = agg_random_descs(df_data, idx, p_value, seed=seed)
-        desc_random.to_csv(os.path.join(save_dir, f'random_{seed}.tsv'),
-                           sep='\t')
+    df_data.drop(columns=[p_value], inplace=True)
+    df_data.set_index(idx, inplace=True)
+    print('Non-aggregation shape:', df_data.shape)
+    df_data.to_csv(os.path.join(save_dir, 'non_aggregation.csv'))
 
 
 if __name__ == '__main__':
-    DATA_DIR = 'xxx'
-    data_list = [
-        'aptc-1/pmapper_train.csv', 'aptc-1/pmapper_test.csv',
-        'aptc-2/pmapper_train.csv', 'aptc-2/pmapper_test.csv'
-    ]
-
-    SAVE_DIR_1 = 'xxx'
-    dir_list = ['aptc1_train', 'aptc1_test', 'aptc2_train', 'aptc2_test']
-
-    for path_name, dir_name in zip(data_list, dir_list):
-        DATA_PATH = f'{DATA_DIR}/{path_name}'
-        SAVE_DIR_2 = f'{SAVE_DIR_1}/{dir_name}'
-        if not os.path.exists(SAVE_DIR_2):
-            os.makedirs(SAVE_DIR_2)
-        calcualte_aggregated_descriptors(DATA_PATH, SAVE_DIR_2)
+    DATA_PATH = 'xxx'
+    SAVE_DIR = 'xxx'
+    os.makedirs(SAVE_DIR, exist_ok=True)
+    calc_agg_3d_descs(DATA_PATH, SAVE_DIR)
