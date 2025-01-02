@@ -4,7 +4,7 @@ This repository provide the data/code/model that used for the analysis.
 
 ## PQC Dataset
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13801221.svg)](https://doi.org/10.5281/zenodo.13801221)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14575682.svg)](https://doi.org/10.5281/zenodo.14575682)
 
 One unique aspect of this study was creating the carefully controlled data sets for models’ performance evaluation in conformational diversity and the target property’s dependence on conformation.
 For example, the QM9 dataset is limited to very small atoms with 9 or less heavy atoms, and many structurally abnormal molecules were observed. We hope that the PQC dataset will be used as a benchmark dataset for predicting properties using machine learning models.
@@ -41,8 +41,8 @@ Please kindly cite our paper if you use the data/code/model.
   month        = sep,
   year         = 2024,
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.13801221},
-  url          = {https://doi.org/10.5281/zenodo.13801221}
+  doi          = {10.5281/zenodo.14575682},
+  url          = {https://doi.org/10.5281/zenodo.14575682}
 }
 ```
 
