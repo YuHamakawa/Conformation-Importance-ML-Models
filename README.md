@@ -33,12 +33,12 @@ Check [tutorial_notebook](https://github.com/YuHamakawa/Conformation-Importance-
 Please kindly cite our paper if you use the data/code/model.
 
 ```
-@dataset{hamakawa_2024_13801221,
+@dataset{hamakawa_2024_14575682,
   author       = {Hamakawa, Yu and
                   Miyao, Tomoyuki},
-  title        = {{Datasets for understanding the importance of 
-                   conformation in property prediction models}},
-  month        = sep,
+  title        = {Datasets for understanding the importance of 
+                   conformation in property prediction models},
+  month        = dec,
   year         = 2024,
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.14575682},
