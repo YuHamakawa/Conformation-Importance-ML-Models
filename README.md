@@ -21,6 +21,13 @@ git clone https://github.com/YuHamakawa/Conformation-Importance-ML-Models.git
 cd Conformation-Importance-ML-Models
 conda env create -f environment.yml
 ```
+
+Note: When calculating the Mordred descriptors, please prepare a separate conda environment as shown below.
+```
+cd Conformation-Importance-ML-Models
+conda env create -f environment_mordred.yml
+```
+
 4. Download the PQC dataset and the APTCs dataset from [here](https://zenodo.org/records/13801221)
 5. Unzip the downloaded file and place the files directly under the 'Conformation-Importance-ML-Models' directory.
 
@@ -33,6 +40,17 @@ Check [tutorial_notebook](https://github.com/YuHamakawa/Conformation-Importance-
 Please kindly cite our paper if you use the data/code/model.
 
 ```
+@article{hamakawa2025understanding,
+  title={Understanding Conformation Importance in Data-Driven Property Prediction Models},
+  author={Hamakawa, Yu and Miyao, Tomoyuki},
+  journal={Journal of Chemical Information and Modeling},
+  volume={65},
+  number={7},
+  pages={3388--3404},
+  year={2025},
+  publisher={ACS Publications}
+}
+
 @dataset{hamakawa_2024_14575682,
   author       = {Hamakawa, Yu and
                   Miyao, Tomoyuki},
