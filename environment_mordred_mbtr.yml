@@ -1,4 +1,4 @@
-name: mordred
+name: mordred-mbtr
 channels:
   - conda-forge
   - defaults

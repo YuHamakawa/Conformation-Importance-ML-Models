@@ -25,7 +25,7 @@ conda env create -f environment.yml
 Note: When calculating the Mordred descriptors, please prepare a separate conda environment as shown below.
 ```
 cd Conformation-Importance-ML-Models
-conda env create -f environment_mordred.yml
+conda env create -f environment_mordred_mbtr.yml
 ```
 
 4. Download the PQC dataset and the APTCs dataset from [here](https://zenodo.org/records/13801221)
