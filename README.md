@@ -22,7 +22,7 @@ cd Conformation-Importance-ML-Models
 conda env create -f environment.yml
 ```
 
-Note: When calculating the Mordred descriptors, please prepare a separate conda environment as shown below.
+Note: When calculating the Mordred and MBTR descriptors, please prepare a separate conda environment as shown below.
 ```
 cd Conformation-Importance-ML-Models
 conda env create -f environment_mordred_mbtr.yml
